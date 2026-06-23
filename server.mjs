@@ -5,7 +5,6 @@ import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = fileURLToPath(new URL(".", import.meta.url));
-const PUBLIC = join(ROOT, "public");
 const DATA_DIR = join(ROOT, "data");
 const DB_FILE = join(DATA_DIR, "moods.json");
 const PORT = Number(process.env.PORT || 4173);
@@ -151,13 +150,16 @@ const mime = {
 async function serveStatic(res, pathname) {
   const relative = pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
   const safePath = normalize(relative).replace(/^(\.\.[/\\])+/, "");
-  const file = join(PUBLIC, safePath);
+  const file = join(ROOT, safePath);
+
   try {
     const content = await readFile(file);
-    res.writeHead(200, { "Content-Type": mime[extname(file)] || "application/octet-stream" });
+    res.writeHead(200, {
+      "Content-Type": mime[extname(file)] || "application/octet-stream"
+    });
     res.end(content);
   } catch {
-    const content = await readFile(join(PUBLIC, "index.html"));
+    const content = await readFile(join(ROOT, "index.html"));
     res.writeHead(200, { "Content-Type": mime[".html"] });
     res.end(content);
   }
