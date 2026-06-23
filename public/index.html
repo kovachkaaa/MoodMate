@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="mk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#7857ff" />
+    <title>MoodMate — твој простор за подобар ден</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#home" aria-label="MoodMate почетна">
+          <span class="brand-mark">M</span>
+          <span>MoodMate</span>
+        </a>
+
+        <nav>
+          <a class="nav-link active" href="#home" data-page="home"><span>⌂</span> Почетна</a>
+          <a class="nav-link" href="#checkin" data-page="checkin"><span>♡</span> Mood check-in</a>
+          <a class="nav-link" href="#journal" data-page="journal"><span>◫</span> Мој дневник</a>
+          <a class="nav-link" href="#insights" data-page="insights"><span>↗</span> Мои увиди</a>
+          <a class="nav-link" href="#support" data-page="support"><span>☼</span> Поддршка</a>
+        </nav>
+
+        <div class="sidebar-card">
+          <div class="tiny-orb">🌱</div>
+          <strong>Мала пауза?</strong>
+          <p>Земи еден длабок здив. Вдиши 4, задржи 4, издиши 4.</p>
+          <button class="text-button" id="breatheBtn">Започни вежба →</button>
+        </div>
+        <p class="privacy-note">🔒 Твојот дневник е приватен</p>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <button class="menu-button" id="menuBtn" aria-label="Отвори мени">☰</button>
+          <div>
+            <p class="eyebrow" id="todayLabel"></p>
+            <h1 id="greeting">Здраво! Како си денес?</h1>
+          </div>
+          <div class="profile">
+            <div class="profile-copy"><strong>Мој профил</strong><span>Level 3 · Mindful Explorer</span></div>
+            <div class="avatar">MK</div>
+          </div>
+        </header>
+
+        <section class="page active" id="home">
+          <div class="hero-grid">
+            <article class="checkin-card">
+              <div class="section-heading">
+                <div><span class="section-kicker">ДНЕВЕН CHECK-IN</span><h2>Како се чувствуваш?</h2></div>
+                <span class="soft-pill">помалку од 1 мин.</span>
+              </div>
+              <div class="mood-grid compact" id="quickMoods">
+                <button class="mood-option" data-mood="happy"><span>😊</span><strong>Среќно</strong></button>
+                <button class="mood-option" data-mood="okay"><span>🙂</span><strong>ОК</strong></button>
+                <button class="mood-option" data-mood="sad"><span>😔</span><strong>Тажно</strong></button>
+                <button class="mood-option" data-mood="stressed"><span>😫</span><strong>Под стрес</strong></button>
+              </div>
+              <button class="primary-button wide" id="continueCheckin">Продолжи со check-in <span>→</span></button>
+            </article>
+
+            <article class="streak-card">
+              <div class="streak-art"><span>🔥</span></div>
+              <div><span class="section-kicker light">ТВОЈАТА НИЗА</span><h2><b id="streakValue">0</b> дена по ред!</h2>
+                <p>Одлично ти оди. Секој check-in е мал чекор кон подобро разбирање на себе.</p>
+              </div>
+              <div class="week-dots" id="weekDots"></div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel chart-panel">
+              <div class="section-heading">
+                <div><span class="section-kicker">ПОСЛЕДНИ 7 ДЕНА</span><h2>Твојот mood ритам</h2></div>
+                <button class="ghost-button" data-go="insights">Види детали</button>
+              </div>
+              <div class="chart-wrap"><svg id="moodChart" viewBox="0 0 720 240" role="img" aria-label="График на расположение"></svg></div>
+            </article>
+
+            <article class="panel challenge-card">
+              <div class="challenge-icon">☀️</div>
+              <span class="section-kicker">ДЕНЕШЕН ПРЕДИЗВИК</span>
+              <h2>15 минути без екран</h2>
+              <p>Остави го телефонот и направи нешто што ти носи мир — прошетка, музика или разговор.</p>
+              <div class="progress-line"><span></span></div>
+              <button class="secondary-button" id="challengeBtn">Го прифаќам предизвикот</button>
+            </article>
+          </div>
+
+          <div class="mini-stats">
+            <article><div class="stat-icon purple">🌙</div><div><span>Просечен сон</span><strong id="sleepStat">—</strong><small>последни 7 дена</small></div></article>
+            <article><div class="stat-icon coral">⚡</div><div><span>Просечен стрес</span><strong id="stressStat">—</strong><small>од максимални 5</small></div></article>
+            <article><div class="stat-icon mint">🏃</div><div><span>Активни денови</span><strong id="activeStat">—</strong><small>30+ минути движење</small></div></article>
+          </div>
+
+          <div class="kind-note">
+            <div class="note-avatar">✨</div>
+            <div><span class="section-kicker">MOODMATE ПОРАКА</span><p id="dailyMessage">Не мора секој ден да биде совршен. Доволно е да бидеш искрен/а со себе.</p></div>
+            <button aria-label="Затвори порака">×</button>
+          </div>
+        </section>
+
+        <section class="page" id="checkin">
+          <div class="page-intro">
+            <span class="section-kicker">ТВОЈ МОМЕНТ</span>
+            <h2>Да провериме како си денес</h2>
+            <p>Нема точни и погрешни одговори. Ова е простор само за тебе.</p>
+          </div>
+          <form class="checkin-form" id="checkinForm">
+            <div class="form-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>Избери го расположението</h3>
+                <div class="mood-grid" id="formMoods">
+                  <button type="button" class="mood-option" data-mood="happy"><span>😊</span><strong>Среќно</strong><small>Имам убав ден</small></button>
+                  <button type="button" class="mood-option" data-mood="okay"><span>🙂</span><strong>ОК</strong><small>Стабилно сум</small></button>
+                  <button type="button" class="mood-option" data-mood="sad"><span>😔</span><strong>Тажно</strong><small>Ми треба поддршка</small></button>
+                  <button type="button" class="mood-option" data-mood="stressed"><span>😫</span><strong>Под стрес</strong><small>Имам многу мисли</small></button>
+                </div>
+              </div>
+            </div>
+            <div class="form-step">
+              <div class="step-number">2</div>
+              <div class="step-content split-fields">
+                <label><span>Ниво на стрес: <b id="stressOutput">3</b>/5</span><input id="stressInput" type="range" min="1" max="5" value="3"></label>
+                <label><span>Колку часа спиеше?</span><input id="sleepInput" type="number" min="0" max="14" step="0.5" value="8"></label>
+                <label><span>Минути физичка активност</span><input id="activityInput" type="number" min="0" max="300" value="30"></label>
+              </div>
+            </div>
+            <div class="form-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <label><span>Сакаш да додадеш кратка белешка?</span><textarea id="noteInput" maxlength="300" placeholder="Што го одбележа твојот ден?"></textarea></label>
+                <div class="form-footer"><span><b id="charCount">0</b>/300</span><button class="primary-button" type="submit">Зачувај го денот ✨</button></div>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <section class="page" id="journal">
+          <div class="page-intro row">
+            <div><span class="section-kicker">МОЈ ДНЕВНИК</span><h2>Твоите денови, на едно место</h2><p>Погледни ги моментите и препознај што ти помага.</p></div>
+            <button class="primary-button" data-go="checkin">+ Нов запис</button>
+          </div>
+          <div class="journal-list" id="journalList"></div>
+        </section>
+
+        <section class="page" id="insights">
+          <div class="page-intro"><span class="section-kicker">МОИ УВИДИ</span><h2>Малите обрасци кажуваат многу</h2><p>Овие податоци се информативни и не претставуваат медицинска проценка.</p></div>
+          <div class="insight-grid">
+            <article class="panel big-insight"><h3>Расположение низ времето</h3><div class="chart-wrap large"><svg id="bigMoodChart" viewBox="0 0 720 280"></svg></div></article>
+            <article class="panel insight-copy"><span class="big-percentage" id="positivePercent">0%</span><h3>позитивни или стабилни денови</h3><p>Продолжи да ги забележуваш работите што ти помагаат да останеш во баланс.</p></article>
+          </div>
+          <div class="correlation-grid">
+            <article class="panel"><span>Сон</span><h3 id="sleepInsight">—</h3><p>Просек во последните седум записи</p></article>
+            <article class="panel"><span>Стрес</span><h3 id="stressInsight">—</h3><p>Просек во последните седум записи</p></article>
+            <article class="panel"><span>Движење</span><h3 id="movementInsight">—</h3><p>Денови со најмалку 30 минути</p></article>
+          </div>
+        </section>
+
+        <section class="page" id="support">
+          <div class="support-hero"><div><span class="section-kicker light">НЕ СИ САМ/А</span><h2>Во ред е да побараш поддршка</h2><p>MoodMate може да ти помогне да ги забележиш чувствата, но разговорот со човек на кој му веруваш може да направи голема разлика.</p></div><span class="support-emoji">🤝</span></div>
+          <div class="support-grid">
+            <article class="panel"><span class="support-icon">🏠</span><h3>Разговарај со близок</h3><p>Родител, старател или друг возрасен на кој му веруваш.</p></article>
+            <article class="panel"><span class="support-icon">🏫</span><h3>Училишна поддршка</h3><p>Психолог, педагог, класен раководител или омилен наставник.</p></article>
+            <article class="panel"><span class="support-icon">💬</span><h3>Започни едноставно</h3><p>„Не се чувствувам најдобро и би сакал/а да разговараме.“</p></article>
+          </div>
+          <div class="urgent-note"><strong>Ако си во непосредна опасност или размислуваш да се повредиш:</strong><p>Веднаш кажи му на возрасен во близина или јави се на локалните итни служби на 112.</p></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="resultModal">
+      <div class="modal">
+        <button class="modal-close" data-close="resultModal">×</button>
+        <div class="modal-emoji">💜</div>
+        <span class="section-kicker">CHECK-IN ЗАВРШЕН</span>
+        <h2 id="resultTitle">Фала што сподели.</h2>
+        <p id="resultMessage"></p>
+        <div class="advice-box" id="resultAdvice"></div>
+        <button class="primary-button wide" data-close="resultModal">Продолжи</button>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="breatheModal">
+      <div class="modal breathe-modal">
+        <button class="modal-close" data-close="breatheModal">×</button>
+        <h2>Диши заедно со кругот</h2>
+        <div class="breathing-circle"><span id="breathingText">Вдиши</span></div>
+        <p>Повтори го ритамот неколку пати. Само ти и овој момент.</p>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "seed-1",
+    "date": "2026-06-17",
+    "mood": "happy",
+    "stress": 2,
+    "sleep": 8,
+    "activity": 45,
+    "note": "Убав ден со другарите.",
+    "challengeDone": true
+  },
+  {
+    "id": "seed-2",
+    "date": "2026-06-18",
+    "mood": "okay",
+    "stress": 3,
+    "sleep": 7,
+    "activity": 25,
+    "note": "Имав многу домашни задачи.",
+    "challengeDone": false
+  },
+  {
+    "id": "seed-3",
+    "date": "2026-06-19",
+    "mood": "stressed",
+    "stress": 5,
+    "sleep": 6,
+    "activity": 10,
+    "note": "Се подготвував за тест.",
+    "challengeDone": true
+  },
+  {
+    "id": "seed-4",
+    "date": "2026-06-20",
+    "mood": "sad",
+    "stress": 4,
+    "sleep": 6.5,
+    "activity": 15,
+    "note": "Ми недостасуваше одмор.",
+    "challengeDone": false
+  },
+  {
+    "id": "seed-5",
+    "date": "2026-06-21",
+    "mood": "okay",
+    "stress": 3,
+    "sleep": 7.5,
+    "activity": 30,
+    "note": "Подобар ден.",
+    "challengeDone": true
+  },
+  {
+    "id": "a20789ce-e9f7-4835-b538-27f369dce56a",
+    "date": "2026-06-22",
+    "mood": "stressed",
+    "stress": 4,
+    "sleep": 6,
+    "activity": 120,
+    "note": "",
+    "challengeDone": false
+  },
+  {
+    "id": "01e81913-a09d-411e-86a4-cb5c8ddf5b09",
+    "date": "2026-06-23",
+    "mood": "happy",
+    "stress": 3,
+    "sleep": 9.5,
+    "activity": 3,
+    "note": "",
+    "challengeDone": true
+  }
+]
